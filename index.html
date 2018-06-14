@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="https://vjs.zencdn.net/7.0.3/video-js.min.css">
+    <link rel="stylesheet" href="assets/css/videojs-iplayer-theme.min.css">
+    <link rel="stylesheet" href="assets/css/style.min.css">
+    <title>Watch videos by torrents in your browser</title>
+</head>
+
+<body>
+    <header>
+        <nav class="transparent z-depth-0">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <ul id="nav-mobile" class="left forlicense">
+                        <li>
+                            <a href="https://github.com/tnoevry/wwt/blob/master/LICENSE" class="grey-text">MIT License</a>
+                        </li>
+                    </ul>
+                    <ul id="nav-mobile" class="right">
+                        <li>
+                            <a href="https://github.com/tnoevry/wwt">github</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col s12">
+                    <div class="logo">
+                        <i class="material-icons play">play_arrow</i>
+                    </div>
+                </div>
+                <div class="col s12">
+                    <h3 class="title">Watch videos by torrents in your browser</h3>
+                </div>
+                <div class="col s12">
+                    <div class="row starting">
+                        <div class="with-file col m6 s12 right-align">
+                            <a class="target waves-effect waves-light btn-small">
+                                <i class="material-icons left white-text">computer</i>select from your computer a torrent file
+                            </a>
+                            <input type="file" accept=".torrent" style="display:none" class="target" />
+                        </div>
+                        <div class="with-magnet input-field col m6 s12 left-align">
+                            <input class="target" id="magnet" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+                            <label for="magnet">Paste magnet link here.</label>
+                            <span class="helper-text" data-error="This is not magnet!" data-success=""></span>
+                        </div>
+                        <div class="col s12 center-align loader hide">
+                            <div class="timeout hide">
+                                <div class="white-text">Timeout for torrent startup was exceeded</div>
+                                <button data-action="try" class="btn-flat amber-text">try again</button>
+                                <button data-action="cancel" class="btn-flat grey-text">cancel</button>
+                            </div>
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-red-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col s10">
+                    <p>
+                        Powered by&nbsp;
+                        <a class="tooltipped-footer" data-position="top" data-tooltip="WebTorrent" href="https://webtorrent.io" target="_blank">W</a>&nbsp;
+                        <a class="tooltipped-footer" data-position="top" data-tooltip="Video.js" href="https://videojs.com" target="_blank">V</a>&nbsp;
+                        <a class="tooltipped-footer" data-position="top" data-tooltip="Materialize" href="https://materializecss.com" target="_blank">M</a>. Made with
+                        <i class="material-icons">favorite</i> in Brazil.
+                    </p>
+                </div>
+                <div class="col s2 right-align">
+                    <p>
+                        1.0
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="watch">
+        <div class="overview visible">
+            <h4 class="title truncate white-text center-align" data-extension="">&nbsp;</h4>
+            <div class="action center-align">
+                <ul>
+                    <li>
+                        <a class="tooltipped" data-action="home" data-tooltip="Push to home" href="#">
+                            <i class="material-icons">home</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="tooltipped" data-action="utils" data-tooltip="Torrent utils" href="#">
+                            <i class="material-icons">link</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="tooltipped" data-action="stop" data-tooltip="Stop streaming" href="#">
+                            <i class="material-icons">stop</i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="statistics">
+                <div class="received center-align">
+                    <code class="downloaded" style="color:#ef474c">0</code>
+                    <small class="white-text">&nbsp;of&nbsp;</small>
+                    <code class="total white-text">0</code>
+                </div>
+                <div class="progress">
+                    <div class="determinate" style="width: 100%"></div>
+                </div>
+
+                <div class="row speed center-align">
+                    <div class="col s6">
+                        <code class="numPeers">0
+                            <br>
+                            <small>peers</small>
+                        </code>
+                    </div>
+                    <div class="col s6">
+                        <div class="download">
+                            <i class="material-icons blue-text">arrow_drop_down</i>
+                            <code class="blue-text">0 B/s</code>
+                        </div>
+                        <div class="upload">
+                            <i class="material-icons orange-text">arrow_drop_up</i>
+                            <code class="orange-text">0 B/s</code>
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="remaining">
+                            <span>0
+                                <br>
+                                <small>minutes remaining</small>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="fixed-action-btn return-watch hide">
+        <a class="btn-floating btn-large">
+            <i class="large material-icons">play_arrow</i>
+        </a>
+    </div>
+
+    <div class="modal confirm">
+        <div class="modal-content">
+            <h4></h4>
+            <p></p>
+        </div>
+        <div class="modal-footer">
+            <button data-action="confirm" class="waves-effect btn-flat"></button>
+            <button data-action="cancel" class="waves-effect btn-flat red-text"></button>
+        </div>
+    </div>
+
+    <div class="modal torrent-utils">
+        <div class="modal-content">
+            <h4>Torrent Utils</h4>
+            <table>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" onclick="javascript:void(0);" class="modal-close waves-effect waves-green btn-flat">OK</a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
+
+    <script src="assets/js/vendor/video.min.js"></script>
+    <script src="assets/js/main.min.high.js"></script>
+
+</body>
+
+</html>
